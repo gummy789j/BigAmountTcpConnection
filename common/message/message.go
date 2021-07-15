@@ -3,6 +3,7 @@ package message
 const (
 	LoginMesType    = "LoginMes"
 	LoginResMesType = "LoginResMes"
+	RegisterMesType = "RegisterMes"
 )
 
 type Message struct {
@@ -17,6 +18,11 @@ type LoginMes struct {
 }
 
 type LoginResMes struct {
-	Code  int    `json:"code"`  // return status code 500 => user doesn't sign up and 200 => log in Success
+	Code int `json:"code"`
+	// return status code 500 => user doesn't sign up
+	// 200 => log in Success
 	Error string `json:"error"` // return error message
+}
+
+type RegisterMes struct {
 }
