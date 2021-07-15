@@ -88,3 +88,60 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 	err = tf.WritePkg(data)
 	return
 }
+
+func (this *UserProcess) ServerProcessRegister(mes *message.Message) (err error) {
+
+	// decoding the mes.Data from mes
+	var registerMes message.RegisterMes
+	err = json.Unmarshal([]byte(mes.Data), &registerMes)
+	if err != nil {
+		log.Println("json.Unmarshal Fail err=", err)
+		return
+	}
+
+	var resMes message.Message
+	resMes.Type = message.RegisterResMesType
+
+	var registerResMes message.RegisterResMes
+
+	err = model.MyUserDao.Register(&registerMes.User)
+	if err != nil {
+
+		if err == model.ERROR_USER_EXISTS {
+			registerResMes.Code = 505
+			registerResMes.Error = err.Error() // err.Error is making error to string type
+		} else {
+			registerResMes.Code = 50
+			registerResMes.Error = "Register occur unknown ERROR...."
+		}
+
+	} else {
+		registerResMes.Code = 200
+		fmt.Println(registerMes.User.UserId, "Register Success")
+	}
+
+	data, err := json.Marshal(registerResMes)
+	if err != nil {
+		log.Println("json.Marshal Fail err =", err)
+		return
+	}
+
+	// store in the resMes.Data
+	resMes.Data = string(data)
+
+	// serialize the resMes and ready to send
+	data, err = json.Marshal(resMes)
+	if err != nil {
+		log.Println("json.Marshal Fail err =", err)
+		return
+	}
+
+	// writing the reponse message to client
+
+	tf := &utils.Transfer{
+		Conn: this.Conn,
+	}
+
+	err = tf.WritePkg(data)
+	return
+}

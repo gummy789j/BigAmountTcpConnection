@@ -16,6 +16,8 @@ func main() {
 
 	var userPwd string
 
+	var userName string
+
 	for {
 
 		fmt.Println("---------------Welcome to Million Chat Room System------------------")
@@ -41,7 +43,18 @@ func main() {
 
 			//loop = false
 		case 2:
-			fmt.Println("Sign up an account")
+			fmt.Println("Welcome to the Million Chat Room !")
+			fmt.Println("Please enter User ID: ")
+			fmt.Scanf("%d\n", &userId)
+			fmt.Println("Please enter User Password: ")
+			fmt.Scanf("%s\n", &userPwd)
+			fmt.Println("Please enter User Name")
+			fmt.Scanf("%s\n", &userName)
+			up := &processes.UserProcess{}
+			err := up.Register(userId, userPwd, userName)
+			if err != nil {
+				log.Println("Register Fail")
+			}
 			//loop = false
 		case 3:
 			fmt.Println("3.Leave")

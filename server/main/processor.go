@@ -27,6 +27,10 @@ func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
 		err = up.ServerProcessLogin(mes)
 	case message.RegisterMesType:
 		// Handle the sign up
+		up := &processes.UserProcess{
+			Conn: this.Conn,
+		}
+		err = up.ServerProcessRegister(mes)
 	default:
 		log.Println("Message Type doesn't exit.....")
 	}

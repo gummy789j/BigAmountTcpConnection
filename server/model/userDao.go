@@ -2,6 +2,7 @@ package model
 
 import (
 	"encoding/json"
+	"go_code/MultiusersChatRoom/common/message"
 	"log"
 
 	"github.com/gomodule/redigo/redis"
@@ -75,4 +76,36 @@ func (this *UserDao) Login(userid int, userpwd string) (user *User, err error) {
 	}
 
 	return
+}
+
+func (this *UserDao) Register(user *message.User) (err error) {
+
+	conn := this.pool.Get()
+
+	defer conn.Close()
+
+	_, err = this.getUserById(conn, user.UserId)
+
+	if err == nil {
+		err = ERROR_USER_EXISTS
+		return
+
+	}
+
+	data, err := json.Marshal(user)
+	if err != nil {
+
+		return
+	}
+
+	_, err = conn.Do("HSET", "users", user.UserId, data)
+	if err != nil {
+
+		log.Println("Redis HSET error=", err)
+
+		return
+	}
+
+	return
+
 }
