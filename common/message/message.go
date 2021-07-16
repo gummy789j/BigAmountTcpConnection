@@ -1,10 +1,18 @@
 package message
 
 const (
-	LoginMesType       = "LoginMes"
-	LoginResMesType    = "LoginResMes"
-	RegisterMesType    = "RegisterMes"
-	RegisterResMesType = "RegisterResMes"
+	LoginMesType            = "LoginMes"
+	LoginResMesType         = "LoginResMes"
+	RegisterMesType         = "RegisterMes"
+	RegisterResMesType      = "RegisterResMes"
+	NotifyUserStatusMesType = "NotifyUserStatusMes"
+)
+
+// User Status constant
+const (
+	UserOnline = iota
+	UserOffline
+	UserBusyStatus
 )
 
 type Message struct {
@@ -23,6 +31,8 @@ type LoginResMes struct {
 	// return status code 500 => user doesn't sign up
 	// 200 => log in Success
 	Error string `json:"error"` // return error message
+
+	UserIds []int `json:"userIds"` // For client to know which users are on-line
 }
 
 type RegisterMes struct {
@@ -32,4 +42,11 @@ type RegisterMes struct {
 type RegisterResMes struct {
 	Code  int    `json:"code"`
 	Error string `json:"error"`
+}
+
+// Server can send the message of change of user status
+// Server send message "Actively"
+type NotifyUserStatusMes struct {
+	UserId int `json:"userId"`
+	Status int `json:"status"`
 }

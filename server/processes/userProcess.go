@@ -12,6 +12,9 @@ import (
 
 type UserProcess struct {
 	Conn net.Conn
+
+	// Add a content to represent the User Id for this user Conn
+	UserId int
 }
 
 // This is a function for handling the request of log in
@@ -49,7 +52,24 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 
 	} else {
 		loginResMes.Code = 200
+
+		// Since users are log in Suceess
+		// We have to record userProcess to the userMgr
+		this.UserId = loginMes.UserId
+
+		userMgr.AddonlineUser(this)
+
+		// Notify other users that you are on-line
+		this.NotifyOthersOnlineUser(loginMes.UserId)
+
+		// return online users list to client
+		for id, _ := range userMgr.onlineUsers {
+
+			loginResMes.UserIds = append(loginResMes.UserIds, id)
+		}
+
 		fmt.Println(user, "Login Success")
+
 	}
 
 	// // identify the id， if id = 100 & password = abc, it's legal
@@ -144,4 +164,54 @@ func (this *UserProcess) ServerProcessRegister(mes *message.Message) (err error)
 
 	err = tf.WritePkg(data)
 	return
+}
+
+// Notify other users you are on-line
+func (this *UserProcess) NotifyOthersOnlineUser(userId int) {
+
+	for id, up := range userMgr.onlineUsers {
+
+		if id == userId {
+			continue
+		}
+
+		up.Notify(userId)
+	}
+}
+
+// Implement Notify process
+func (this *UserProcess) Notify(userId int) {
+
+	var notifyUserStatusMes message.NotifyUserStatusMes
+	notifyUserStatusMes.Status = message.UserOnline
+	notifyUserStatusMes.UserId = userId
+
+	data, err := json.Marshal(notifyUserStatusMes)
+	if err != nil {
+		log.Println("json.Marshal Fail err=", err)
+		return
+	}
+
+	var mes message.Message
+	mes.Type = message.NotifyUserStatusMesType
+	mes.Data = string(data)
+
+	data, err = json.Marshal(mes)
+	if err != nil {
+		log.Println("json.Marshal Fail err=", err)
+		return
+	}
+
+	tf := &utils.Transfer{
+		Conn: this.Conn,
+	}
+
+	err = tf.WritePkg(data)
+	if err != nil {
+		log.Println("writePkg Fail err =", err)
+		return
+	}
+
+	return
+
 }
