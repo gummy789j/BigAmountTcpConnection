@@ -12,5 +12,5 @@
 * ### User log in
 * ### User sign up
 * ### User talk to other users
-* ### Reporting the user on-line immediately
+* ### Reporting users on-line immediately
 * ### Inquiring on-line users list
