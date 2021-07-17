@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"go_code/MultiusersChatRoom/common/message"
 	"go_code/MultiusersChatRoom/server/processes"
 	"go_code/MultiusersChatRoom/server/utils"
@@ -16,6 +17,8 @@ type Processor struct {
 // This is a function for making a decision for which server response should be sent back
 // According the client message type
 func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
+
+	fmt.Println("mes =", mes)
 
 	switch mes.Type {
 

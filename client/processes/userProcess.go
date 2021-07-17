@@ -88,6 +88,11 @@ func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 	if loginResMes.Code == 200 {
 		//log.Println("Login Success")
 
+		// initialize CurUser
+		CurUser.Conn = conn
+		CurUser.UserId = userId
+		CurUser.UserStatus = message.UserOnline
+
 		fmt.Println("Users are on-line in current on the following list:")
 
 		for _, id := range loginResMes.UserIds {
@@ -97,12 +102,17 @@ func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 			}
 
 			fmt.Println("User ID:\t", id)
+
+			user := &message.User{
+				UserId:     id,
+				UserStatus: message.UserOnline,
+			}
+
+			onlineUsers[id] = user
 		}
 		fmt.Print("\n\n")
 
 		go serverProcessMes(conn)
-
-		//
 
 		ShowMenu()
 

@@ -63,7 +63,8 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 		this.NotifyOthersOnlineUser(loginMes.UserId)
 
 		// return online users list to client
-		for id, _ := range userMgr.onlineUsers {
+		// range can also iterate over just the keys of a map.
+		for id := range userMgr.onlineUsers {
 
 			loginResMes.UserIds = append(loginResMes.UserIds, id)
 		}

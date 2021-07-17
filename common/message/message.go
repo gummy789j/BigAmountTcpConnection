@@ -6,6 +6,7 @@ const (
 	RegisterMesType         = "RegisterMes"
 	RegisterResMesType      = "RegisterResMes"
 	NotifyUserStatusMesType = "NotifyUserStatusMes"
+	SmsMesType              = "SmsMes"
 )
 
 // User Status constant
@@ -49,4 +50,11 @@ type RegisterResMes struct {
 type NotifyUserStatusMes struct {
 	UserId int `json:"userId"`
 	Status int `json:"status"`
+}
+
+// Add a SmsMes
+
+type SmsMes struct {
+	Content string `json:"content"`
+	User           // inherent
 }
