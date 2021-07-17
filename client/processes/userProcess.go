@@ -69,7 +69,7 @@ func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 		log.Println("writePkg Fail err=", err)
 	}
 
-	fmt.Printf("The message from client is %v\n", string(data)) //"{\"userId\":100,\"userPwd\":\"abc\",\"userName\":\"Steven\"}"
+	//fmt.Printf("The message from client is %v\n", string(data)) //"{\"userId\":100,\"userPwd\":\"abc\",\"userName\":\"Steven\"}"
 
 	// 9. We have to process the return message(LoginResMes)
 	mes, err = tf.ReadPkg() // readPkg function in the utils.go

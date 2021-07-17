@@ -197,6 +197,7 @@ func main() {
 
 		// Once connection success, open a goroutine and keep communicating with the client
 
+		fmt.Println("hello")
 		go process(conn)
 	}
 }

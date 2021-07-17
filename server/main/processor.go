@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"go_code/MultiusersChatRoom/common/message"
 	"go_code/MultiusersChatRoom/server/processes"
 	"go_code/MultiusersChatRoom/server/utils"
@@ -18,8 +17,6 @@ type Processor struct {
 // According the client message type
 func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
 
-	fmt.Println("mes =", mes)
-
 	switch mes.Type {
 
 	case message.LoginMesType:
@@ -34,6 +31,11 @@ func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
 			Conn: this.Conn,
 		}
 		err = up.ServerProcessRegister(mes)
+	case message.SmsMesType:
+
+		sp := &processes.SmsProcess{}
+		err = sp.SendGroupMes(mes)
+
 	default:
 		log.Println("Message Type doesn't exit.....")
 	}
