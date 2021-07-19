@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"go_code/MultiusersChatRoom/client/processes"
+
 	"log"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/client/processes"
 )
 
 func main() {

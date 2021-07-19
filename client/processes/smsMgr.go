@@ -2,7 +2,8 @@ package processes
 
 import (
 	"fmt"
-	"go_code/MultiusersChatRoom/common/message"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 func outputGroupMes(mes *message.SmsMes) {

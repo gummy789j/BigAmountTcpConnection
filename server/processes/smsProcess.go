@@ -2,10 +2,13 @@ package processes
 
 import (
 	"encoding/json"
-	"go_code/MultiusersChatRoom/common/message"
-	"go_code/MultiusersChatRoom/server/utils"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/server/utils"
+
 	"log"
 	"net"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 type SmsProcess struct {

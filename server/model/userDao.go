@@ -2,10 +2,11 @@ package model
 
 import (
 	"encoding/json"
-	"go_code/MultiusersChatRoom/common/message"
+
 	"log"
 
 	"github.com/gomodule/redigo/redis"
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 // we can use this gobal variable to imporve our efficiency when we access redis

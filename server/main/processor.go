@@ -1,12 +1,13 @@
 package main
 
 import (
-	"go_code/MultiusersChatRoom/common/message"
-	"go_code/MultiusersChatRoom/server/processes"
-	"go_code/MultiusersChatRoom/server/utils"
 	"io"
 	"log"
 	"net"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
+	"github.com/gummy789j/Multi-Users_ChatRoom/server/processes"
+	"github.com/gummy789j/Multi-Users_ChatRoom/server/utils"
 )
 
 type Processor struct {

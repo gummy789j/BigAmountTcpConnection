@@ -3,10 +3,12 @@ package processes
 import (
 	"encoding/json"
 	"fmt"
-	"go_code/MultiusersChatRoom/client/utils"
-	"go_code/MultiusersChatRoom/common/message"
+
 	"log"
 	"net"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/client/utils"
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 type UserProcess struct {

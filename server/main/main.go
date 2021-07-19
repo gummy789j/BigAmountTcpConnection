@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
-	"go_code/MultiusersChatRoom/server/model"
+
 	"log"
 	"net"
 	"time"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/server/model"
 )
 
 // // This is a function for reading the client/server message

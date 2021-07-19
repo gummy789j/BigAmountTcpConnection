@@ -2,8 +2,9 @@ package processes
 
 import (
 	"fmt"
-	"go_code/MultiusersChatRoom/client/model"
-	"go_code/MultiusersChatRoom/common/message"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/client/model"
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 // Client have to handle these map

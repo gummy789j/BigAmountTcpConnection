@@ -3,11 +3,14 @@ package processes
 import (
 	"encoding/json"
 	"fmt"
-	"go_code/MultiusersChatRoom/client/utils"
-	"go_code/MultiusersChatRoom/common/message"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/client/utils"
+
 	"log"
 	"net"
 	"os"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 func ShowMenu() {

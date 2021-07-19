@@ -1,9 +1,9 @@
 package model
 
 import (
-	"go_code/MultiusersChatRoom/common/message"
-
 	"net"
+
+	"github.com/gummy789j/Multi-Users_ChatRoom/common/message"
 )
 
 type CurUser struct {
