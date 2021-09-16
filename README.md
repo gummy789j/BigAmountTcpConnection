@@ -1,13 +1,14 @@
 # There is a Multi-users Chat Room Project including server and client
 
-# Technique :
+# Techniques
 
-* ### OO in Golang
 * ### Web Socket Programming
 * ### Multithreading Programming (Goroutine)
 * ### How to design a Chat Room Architecture logically
 
-# Function already implemented (Currently) :
+-----
+
+# Function already implemented (Currently)
 
 * ### User log in
 * ### User sign up
