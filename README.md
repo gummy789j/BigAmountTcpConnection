@@ -2,7 +2,7 @@
 
 # Techniques
 
-* ### Web Socket Programming
+* ### Socket Programming
 * ### Multithreading Programming (Goroutine)
 * ### How to design a Chat Room Architecture logically
 
